@@ -1,0 +1,91 @@
+/* Kart Atölyesi v3 — görünüm ekleri */
+:root{font-family:'Outfit','Segoe UI',system-ui,sans-serif}
+[hidden]{display:none!important}
+body{background:radial-gradient(ellipse at 70% -10%,color-mix(in srgb,var(--accent) 9%,transparent),transparent 55%),var(--bg);background-attachment:fixed}
+body[data-theme=fantasy] .brand,body[data-theme=fantasy] .home-hero h1,body[data-theme=fantasy] .deck-hero h1,body[data-theme=fantasy] dialog h2,body[data-theme=fantasy] .template-card h3,body[data-theme=fantasy] .deck-tile-info h3,body[data-theme=fantasy] .table-empty h2{font-family:'Cinzel','Outfit',serif;letter-spacing:.2px}
+.brand-mark{box-shadow:0 0 24px color-mix(in srgb,var(--accent) 25%,transparent);animation:sigil 6s ease-in-out infinite}
+@keyframes sigil{50%{box-shadow:0 0 36px color-mix(in srgb,var(--accent) 45%,transparent)}}
+.primary{background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 70%,#fff));box-shadow:0 4px 18px color-mix(in srgb,var(--accent) 25%,transparent)}
+.deck-stats>div{background:linear-gradient(160deg,var(--panel),var(--panel2));position:relative;overflow:hidden}
+.deck-stats>div::after{content:'';position:absolute;right:-30px;top:-30px;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 16%,transparent),transparent 70%)}
+.deck-tile{box-shadow:0 10px 30px #0004}
+.deck-tile:hover{box-shadow:0 18px 40px #0007,0 0 0 1px color-mix(in srgb,var(--accent) 40%,transparent)}
+.tab.active{box-shadow:inset 0 -2px 0 var(--accent)}
+dialog{border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+dialog[open]{animation:dlg .25s cubic-bezier(.2,1.3,.4,1)}
+@keyframes dlg{from{opacity:0;transform:scale(.92) translateY(10px)}}
+
+/* Kartlar: eğilme ve parlama */
+.card-surface{transition:transform .25s ease-out,box-shadow .25s;transform-style:preserve-3d;will-change:transform}
+.library-card:hover .card-surface{box-shadow:0 22px 40px #0008}
+.holo{position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .3s}
+[data-rarity=common] .card-surface:hover .holo{opacity:.35;background:radial-gradient(circle at var(--mx,50%) var(--my,30%),#ffffff55,transparent 45%);mix-blend-mode:soft-light}
+[data-rarity=rare] .holo{opacity:.25;background:linear-gradient(115deg,transparent 30%,#9fd4ff55 45%,transparent 60%);background-size:250% 100%;mix-blend-mode:screen;animation:sweep 5s ease-in-out infinite}
+[data-rarity=epic] .holo,[data-rarity=legendary] .holo{opacity:.5;mix-blend-mode:overlay;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,30%),#ffffff70,transparent 38%),
+  linear-gradient(125deg,transparent 25%,#ff6ec7 36%,#ffd36e 42%,#7cffb2 48%,#6ec8ff 54%,#b98cff 60%,transparent 72%);
+  background-size:100% 100%,250% 250%;animation:holo 7s ease-in-out infinite alternate}
+[data-rarity=epic] .holo{opacity:.35}
+[data-rarity=legendary] .card-surface:hover .holo{opacity:.85}
+[data-rarity=epic] .card-surface:hover .holo{opacity:.65}
+[data-rarity=rare] .card-surface:hover .holo{opacity:.4}
+@keyframes holo{from{background-position:0 0,100% 100%}to{background-position:0 0,0% 0%}}
+@keyframes sweep{0%,100%{background-position:120% 0}50%{background-position:-20% 0}}
+.library-card[data-rarity=legendary] .card-surface{box-shadow:0 10px 25px #0005,0 0 22px #e7bf7255}
+.library-card[data-rarity=epic] .card-surface{box-shadow:0 10px 25px #0005,0 0 18px #b399f344}
+.table-token .front-face{position:absolute}
+
+/* Masa: deste yığını */
+.deck-pile{position:absolute;right:22px;top:18px;width:96px;height:134px;border:0;background:none;padding:0;z-index:2;cursor:pointer}
+.deck-pile canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:8px;box-shadow:0 6px 14px #0007}
+.deck-pile canvas:nth-child(1){transform:translate(4px,4px) rotate(2deg)}
+.deck-pile canvas:nth-child(2){transform:translate(2px,2px) rotate(-1.5deg)}
+.deck-pile:hover:not(:disabled) canvas:nth-child(3){transform:translateY(-6px)}
+.deck-pile canvas:nth-child(3){transition:transform .2s}
+.deck-pile b{position:absolute;right:-8px;bottom:-8px;min-width:28px;height:28px;padding:0 6px;border-radius:14px;background:var(--accent);color:var(--accentText);font-size:12px;display:grid;place-items:center;box-shadow:0 3px 10px #0007}
+.deck-pile.empty canvas{opacity:.25;filter:grayscale(1)}
+.deck-pile:disabled{opacity:1}
+@media(max-width:750px){.deck-pile{width:64px;height:89px;right:10px;top:auto;bottom:12px}}
+
+/* Kartlar desteden uçarak gelir, havada döner, yüzü açılır */
+.table-token.dealing{animation:fly .7s cubic-bezier(.2,.8,.25,1) both!important;animation-delay:var(--delay,0ms)!important}
+.table-token.dealing:not(.face-down) .flip-body{animation:reveal .9s ease-out both;animation-delay:var(--delay,0ms)}
+@keyframes fly{from{transform:translate(var(--fx,-200px),var(--fy,-80px)) rotate(-12deg) scale(.55);opacity:.2}60%{opacity:1}to{transform:none;opacity:1}}
+@keyframes reveal{0%,50%{transform:rotateY(180deg)}100%{transform:rotateY(0)}}
+body[data-animation=fade] .table-token.dealing{animation-name:fade!important}
+.table-token.rare-glow .flip-body{animation:rareGlow 1.4s ease-in-out 3}
+.table-token[data-rarity=legendary].rare-glow .flip-body{box-shadow:0 0 0 2px #ffe3a0,0 0 40px #e7bf72cc,0 0 90px #e7bf7277}
+.table-token[data-rarity=epic].rare-glow .flip-body{box-shadow:0 0 0 2px #d6c6ff,0 0 36px #b399f3cc,0 0 80px #b399f366}
+@keyframes rareGlow{50%{transform:scale(1.06)}}
+.rare-flash{position:absolute;inset:0;pointer-events:none;opacity:0;z-index:40}
+.rare-flash.on{animation:flash 1.5s ease-out}
+.rare-flash.legendary{background:radial-gradient(circle at 50% 45%,#ffe3a0aa,#e7bf7240 30%,transparent 65%)}
+.rare-flash.epic{background:radial-gradient(circle at 50% 45%,#d6c6ffaa,#b399f340 30%,transparent 65%)}
+@keyframes flash{0%{opacity:0}15%{opacity:1}100%{opacity:0}}
+
+/* Tarayıcı */
+.scan-dialog{width:860px}
+.scan-start{text-align:center;padding:18px 10px 8px}
+.scan-icon{font-size:56px;display:block;margin-bottom:6px}
+.scan-start .muted{max-width:460px;margin:0 auto 20px}
+.scan-pick{display:inline-flex!important;align-items:center;justify-content:center;margin:6px!important;padding:14px 22px!important;font-size:14px!important;cursor:pointer}
+.scan-layout{display:grid;grid-template-columns:1fr 230px;gap:22px}
+.scan-stage{position:relative;line-height:0;border-radius:10px;overflow:visible;touch-action:none;user-select:none;-webkit-user-select:none;background:#000}
+.scan-stage canvas{width:100%;height:auto;max-height:62vh;object-fit:contain;border-radius:10px;display:block}
+.scan-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.scan-svg polygon{fill:#ff9d3a22;stroke:#ff9d3a;stroke-width:.5;vector-effect:non-scaling-stroke;stroke-width:2}
+.scan-handle{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:#ff9d3a55;border:3px solid #ff9d3a;box-shadow:0 0 0 2px #0008,0 4px 12px #0008;cursor:grab;touch-action:none;z-index:2}
+.scan-handle::after{content:'';position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px;border-radius:50%;background:#fff}
+.scan-handle.drag{cursor:grabbing;transform:scale(1.25);background:#ff9d3a99}
+.scan-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.scan-tools .file-label{margin:0;cursor:pointer;font-weight:400}
+.scan-side canvas{display:block;width:100%;height:auto;margin:10px 0 4px;border-radius:9px;box-shadow:0 10px 30px #0008;background:#0008}
+@media(max-width:750px){.scan-layout{grid-template-columns:1fr}.scan-side canvas{width:150px;margin:10px auto}.scan-dialog{padding:18px 14px}.scan-handle{width:40px;height:40px;margin:-20px 0 0 -20px}}
+
+/* Telefon */
+@media(max-width:750px){
+  input,select,textarea{font-size:16px}
+  .sidebar-bottom .quiet{padding:8px 6px}
+  .tabs .outline,.tabs .primary{flex:1 1 auto}
+  .toast{bottom:calc(20px + env(safe-area-inset-bottom))}
+}
