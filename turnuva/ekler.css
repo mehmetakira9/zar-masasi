@@ -1,0 +1,91 @@
+/* Turnuva Atölyesi v3 — görünüm ekleri */
+:root{font-family:'Outfit','Segoe UI',system-ui,sans-serif}
+[hidden]{display:none!important}
+body{background:radial-gradient(ellipse at 80% -10%,#edc7771a,transparent 55%),radial-gradient(ellipse at 0% 100%,#a495ef14,transparent 50%),var(--bg);background-attachment:fixed}
+.primary{background:linear-gradient(135deg,var(--gold),#ffe3a0)!important;box-shadow:0 4px 18px #edc77733}
+dialog[open]{animation:dlg .25s cubic-bezier(.2,1.3,.4,1)}
+@keyframes dlg{from{opacity:0;transform:scale(.92) translateY(10px)}}
+
+/* Yeni turnuva penceresi */
+.names-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px}
+.names-tools .field-note{margin:0 auto 0 0}
+.wheel-lists{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;padding:12px;border:1px dashed var(--line);border-radius:12px}
+.wheel-src{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:9px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--text);text-align:left;min-width:130px}
+.wheel-src:hover{border-color:var(--gold)}
+.ws-kind{font-size:10px;color:var(--muted)}
+.wheel-src strong{font-size:13px}
+.wheel-src small{font-size:10px;color:var(--gold)}
+
+/* Format ekranı */
+.fmt-group{background:linear-gradient(160deg,var(--panel),#10151f);border:1px solid var(--line);border-radius:18px;padding:18px 18px 20px;margin-bottom:18px}
+.fmt-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.fmt-head h2{margin:0;font-size:18px}
+.fmt-L{border-color:#ef8fb344}
+.fmt-F{border-color:#edc77766;background:radial-gradient(ellipse at 70% 50%,#edc77714,transparent 60%),linear-gradient(160deg,var(--panel),#10151f)}
+.fmt-cols{display:flex;gap:18px;overflow-x:auto;padding-bottom:6px;align-items:stretch}
+.fmt-col{min-width:210px;display:flex;flex-direction:column}
+.fmt-col-title{display:block;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:10px}
+.fmt-stack{display:flex;flex-direction:column;justify-content:space-around;gap:12px;flex:1}
+.m-card{display:block;width:100%;text-align:left;background:#121826;border:1px solid var(--line);border-radius:12px;padding:9px 10px;color:var(--text);position:relative;transition:transform .15s,border-color .15s}
+.m-card:not(:disabled):hover{transform:translateY(-2px);border-color:var(--gold)}
+.m-card:disabled{cursor:default}
+.m-card.ready{border-color:#edc77788;box-shadow:0 0 0 1px #edc77733,0 6px 20px #0005}
+.m-card.waiting,.m-card.empty{opacity:.55}
+.m-card.bye{opacity:.7}
+.m-state{display:block;font-size:9px;letter-spacing:1.2px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.m-card.ready .m-state{color:var(--gold)}
+.m-card.done .m-state{color:var(--green)}
+.m-row{display:flex;align-items:center;gap:8px;padding:5px 6px;border-radius:7px}
+.m-row.win{background:#edc77716}
+.m-row.win .m-name{color:var(--gold);font-weight:700}
+.m-row .player-avatar{width:22px;height:22px;font-size:11px;flex:none}
+.m-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}
+.m-name.muted{color:var(--muted);font-style:italic}
+.m-score{font-weight:700;font-size:13px;color:var(--muted);min-width:16px;text-align:right}
+.m-row.win .m-score{color:var(--gold)}
+.m-draw{position:absolute;right:10px;top:8px;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--purple)}
+.fmt-cup{min-width:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;border:1px solid #edc77755;border-radius:14px;padding:18px;background:radial-gradient(circle,#edc77722,transparent 70%)}
+.cup-ico{font-size:44px;filter:drop-shadow(0 0 16px #edc77788)}
+.fmt-cup strong{font-size:20px}
+.league{display:grid;grid-template-columns:minmax(300px,1fr) minmax(300px,1.2fr);gap:18px;align-items:start}
+.league table{width:100%;border-collapse:collapse;font-size:13px}
+.league th{font-size:10px;letter-spacing:1px;color:var(--muted);text-align:center;padding:6px 4px;border-bottom:1px solid var(--line)}
+.league th:nth-child(2){text-align:left}
+.league td{padding:8px 4px;text-align:center;border-bottom:1px solid #2a334666}
+.league td:nth-child(2){text-align:left;display:flex;align-items:center;gap:8px}
+.league td .player-avatar{width:24px;height:24px;font-size:11px}
+.league td.rank{color:var(--muted);width:26px}
+.league td.pts{font-weight:800;color:var(--gold)}
+.league tr.leader td{background:#edc77710}
+.league tr.leader td.rank{color:var(--gold)}
+.week{margin-bottom:14px}
+.week-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+@media(max-width:900px){.league{grid-template-columns:1fr}}
+
+/* Kura */
+.draw-overlay{position:fixed;inset:0;z-index:80;background:#05070dcc;backdrop-filter:blur(8px);display:grid;place-items:center;padding:20px;animation:fadein .25s}
+@keyframes fadein{from{opacity:0}}
+.draw-box{width:min(620px,100%);max-height:90vh;overflow:auto;text-align:center;background:radial-gradient(ellipse at 50% 0%,#edc77722,transparent 60%),var(--panel);border:1px solid #edc77766;border-radius:22px;padding:26px 22px;box-shadow:0 30px 100px #000c}
+.draw-box h2{font-size:26px;margin:10px 0 18px}
+.draw-pairs{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.draw-pair{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;background:#0f1520;border:1px solid var(--line);border-radius:12px;padding:10px 14px;animation:slidein .35s both}
+@keyframes slidein{from{opacity:0;transform:translateY(10px)}}
+.dp-name{font-weight:700;font-size:15px;color:var(--muted);transition:color .2s}
+.dp-name:first-child{text-align:right}
+.dp-name:last-child{text-align:left}
+.dp-name.set{animation:pop .3s}
+@keyframes pop{50%{transform:scale(1.15)}}
+.dp-vs{font-size:10px;font-weight:800;letter-spacing:1px;color:var(--gold);background:#edc7771a;border-radius:8px;padding:4px 7px}
+
+/* Şampiyon */
+.champion-dialog{background:radial-gradient(ellipse at 50% 0%,#edc77733,transparent 60%),var(--panel)!important;border-color:#edc777!important;text-align:center;overflow:visible}
+.champion-dialog[open] .champion-cup{animation:cup 1.2s cubic-bezier(.2,1.5,.4,1) both}
+.champion-cup{color:var(--gold);filter:drop-shadow(0 0 30px #edc777aa)}
+@keyframes cup{0%{transform:translateY(40px) scale(.3) rotate(-20deg);opacity:0}100%{transform:none;opacity:1}}
+.champion-dialog[open] h1{animation:shine 2.4s ease-in-out infinite;background:linear-gradient(90deg,var(--gold),#fff6d8,var(--gold));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes shine{50%{background-position:100% 0}}
+.confetti{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:200;display:none;margin:0;padding:0;border:0;background:transparent;max-width:none;max-height:none;overflow:visible}
+.confetti.on{display:block}
+.draw-choice .player-avatar{background:#a495ef25;color:var(--purple)}
+
+@media(max-width:750px){input,select,textarea{font-size:16px}.fmt-col{min-width:180px}.draw-box h2{font-size:21px}}

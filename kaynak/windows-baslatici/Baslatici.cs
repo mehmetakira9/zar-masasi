@@ -1,4 +1,4 @@
-﻿// Kart Atölyesi — Windows başlatıcısı
+﻿// Turnuva Atölyesi — Windows başlatıcısı
 // Uygulamayı Microsoft Edge (yoksa Google Chrome) "uygulama penceresi" modunda,
 // adres çubuğu ve sekmeler olmadan, kendi ayrı profiliyle açar.
 // Derleme: derle.cmd
@@ -8,9 +8,9 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 
-[assembly: AssemblyTitle("Kart Atölyesi")]
-[assembly: AssemblyProduct("Kart Atölyesi")]
-[assembly: AssemblyDescription("Deste tasarla, kart tara, kart çek")]
+[assembly: AssemblyTitle("Turnuva Atölyesi")]
+[assembly: AssemblyProduct("Turnuva Atölyesi")]
+[assembly: AssemblyDescription("Tek eleme, çift eleme ve lig turnuvaları")]
 [assembly: AssemblyVersion("3.0.0.0")]
 [assembly: AssemblyFileVersion("3.0.0.0")]
 
@@ -20,15 +20,15 @@ static class Baslatici
     static void Main()
     {
         string root = AppDomain.CurrentDomain.BaseDirectory;
-        string html = Path.Combine(root, "kart", "index.html");
+        string html = Path.Combine(root, "turnuva", "index.html");
         if (!File.Exists(html))
         {
-            MessageBox.Show("kart\\index.html bulunamadı.\nZIP dosyasının tamamını aynı klasöre çıkarıp tekrar dene.",
-                "Kart Atölyesi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("turnuva\\index.html bulunamadı.\nZIP dosyasının tamamını aynı klasöre çıkarıp tekrar dene.",
+                "Turnuva Atölyesi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
         string url = new Uri(html).AbsoluteUri;
-        string profile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "KartAtolyesi", "Profil");
+        string profile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TurnuvaAtolyesi", "Profil");
         try { Directory.CreateDirectory(profile); } catch { }
 
         string browser = FindBrowser();
