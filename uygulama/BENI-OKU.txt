@@ -1,0 +1,60 @@
+ZAR MASASI 3.1
+==============
+Zar · Karakter · Savaş · Ölüm & Kader · Envanter · Kampanya ·
+Dünya & Zaman · Harita · Tarifler · Başarımlar · Lifepath
+
+-------------------------------------------------
+1) BİLGİSAYARDA (Windows)
+-------------------------------------------------
+1. Bu ZIP'in tamamını bir klasöre çıkar (örn. Belgeler\Zar Masasi).
+   "uygulama" klasörü "Zar Masasi.exe" ile aynı yerde kalmalı.
+2. "Zar Masasi.exe"ye çift tıkla. Eskisi gibi kendi penceresinde açılır.
+3. Eski Zar Masası'ndaki zar ayarların, reroll/hileli sayaçların ve geçmişin
+   aynen gelir (aynı profil kullanılır: %LOCALAPPDATA%\ZarMasasi).
+- SmartScreen uyarısı çıkarsa: "Ek bilgi" > "Yine de çalıştır".
+- İnternet gerekmez.
+
+-------------------------------------------------
+2) TELEFONDA (internetsiz de çalışır)
+-------------------------------------------------
+Telefonun uygulamayı açabilmesi için "uygulama" klasörünün bir kez internete
+konması gerekir. Ücretsiz iki yol:
+
+A) GitHub Pages (kalıcı, önerilen)
+   1. github.com'da ücretsiz hesap aç, "New repository" ile yeni bir depo oluştur
+      (örn. zar-masasi), "Public" seç.
+   2. "Add file" > "Upload files" ile "uygulama" klasörünün İÇİNDEKİ her şeyi
+      (index.html, app.js, app.css, sw.js, manifest.webmanifest, icons klasörü) yükle.
+   3. Settings > Pages > Branch: "main", klasör: "/ (root)" > Save.
+   4. 1-2 dakika sonra adres hazır olur: https://KULLANICIADIN.github.io/zar-masasi/
+
+B) Netlify Drop
+   app.netlify.com/drop adresine "uygulama" klasörünü sürükle-bırak.
+   (Linkin kalıcı olması için ücretsiz hesap açman gerekir.)
+
+Sonra telefonda:
+   - Android (Chrome): adresi aç > ⋮ menü > "Uygulamayı yükle" / "Ana ekrana ekle"
+   - iPhone (Safari): adresi aç > Paylaş > "Ana Ekrana Ekle"
+   Bir kez açtıktan sonra internet olmadan da çalışır.
+
+-------------------------------------------------
+3) VERİLERİ TAŞIMAK (bilgisayar <-> telefon)
+-------------------------------------------------
+Veriler her cihazda ayrı tutulur. Taşımak için:
+   1. Üstteki "Yedek" (⬇) > "Dışa aktar": zar-masasi-yedek-TARİH.json dosyası oluşur.
+   2. Dosyayı diğer cihaza gönder (WhatsApp, Drive, e-posta...).
+   3. Diğer cihazda "Yedek" > "İçe aktar" ile dosyayı seç.
+   İçe aktarma o cihazdaki verilerin yerine geçer. Ara ara yedek almak iyi fikir.
+
+-------------------------------------------------
+4) CLAUDE İLE OYNARKEN
+-------------------------------------------------
+- Kampanya > "Kaydet metni" > "Oluştur ve kopyala": tüm karakter, envanter, NPC,
+  görev ve hikâye bilgisini tek metin yapar; yeni sohbette Claude'a yapıştır.
+- Lifepath > "Lifepath'i Claude için kopyala": zar sonuçlarını hazır mesaj yapar.
+- Karakter kağıdındaki 🎲 tuşları zarı bonusuyla birlikte Zar masasına koyar.
+
+KISAYOLLAR (Zar sekmesi): Boşluk = hepsini at · H = hileli mod
+
+UYGULAMAYI GÜNCELLERSEN: sw.js içindeki VERSION değerini artır (örn. zm3-v2),
+yoksa telefonlar bir süre eski sürümü gösterebilir.
